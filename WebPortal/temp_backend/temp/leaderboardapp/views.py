@@ -7,7 +7,6 @@ from .serializers import RegisterSerializer, PlayerSerializer
 from .models import Player
 import requests
 
-# fetch helpers same as before ...
 
 
 @api_view(["POST"])
