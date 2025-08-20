@@ -1,0 +1,65 @@
+.mainDiv{
+    height: 400px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: rgb(31, 10, 46);
+}
+.box{
+    height: 220px;
+    width: 290px;
+    border: 2px solid black;
+    margin: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: black;
+    box-shadow: 0 0 10px 0px rgb(87, 25, 129);
+    transition: border 1s;
+    transition: box-shadow 1s ;
+}
+.box:hover{
+    border: 1px solid rgb(87, 25, 129);
+    box-shadow:  0 0 30px 1px rgb(87, 25, 129);
+}
+.pic{
+    height: 50px;
+    width: 50px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: rgb(87, 25, 129);
+}
+.title{
+    height: 30px;
+    width: 150px;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    padding-top: 20px;
+    margin-bottom: 0%;
+}
+.text{
+    height: 70px;
+    width: 280px;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(144, 139, 139);
+    font-size: smaller;
+    padding-top: 0px;
+    margin-top: 0px;
+
+
+}
