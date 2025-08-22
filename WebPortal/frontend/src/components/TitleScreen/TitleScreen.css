@@ -1,23 +1,25 @@
-.nav{
+
+
+.title-box{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    //background-color: black;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 340px;
 }
-.nav div{
+.title-box div{
 margin: 10px;
 display: flex;
 color: aliceblue;
 justify-content: center;
 align-items: center;
 }
-.nav .title {
-    padding-left: 50px;
-}
-.nav .title p{
-   padding-left: 20px;
-    font-size: 35px;
+
+.title-box .title p{
+
+    font-size: 130px;
     color: aliceblue;
+    padding-bottom: 100px;
     font-weight: 300;
      background: linear-gradient(190deg, #8132d1, #4c2c86);
   -webkit-background-clip: text;
@@ -33,14 +35,18 @@ text-shadow: rgba(165,85,218,255) 0px 0px 10px;
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
 
 }
-.nav .btns{
+.title-box .btns{
     display: flex;
-    justify-content: space-around;
-    padding-right: 50px;
+    justify-content: center;
+    align-items: center;
+
+}
+.title-box .title{
+  margin-top: 100px;
 }
 
 .btns div{
@@ -56,28 +62,35 @@ text-shadow: rgba(165,85,218,255) 0px 0px 10px;
      transition: all 0.2s ease-in-out;
 }
 .btns div:hover{
-box-shadow: white 0px 0px 10px;
+//box-shadow: white 0px 0px 10px;
 transform: translateY(-3px);
 }
-.btns .s-in{
+.btns .gettingStarted{
     display: flex;
        border: 2px #221335 solid;
     justify-content: center;
     align-items: center;
     background-color:rgba(9,9,11,255)
 }
-.btns .s-in:hover{
+.title-para{
+font-size: 30px;
+ width: 75%;
+word-wrap: normal;
+  text-align: center; 
+  color: rgba(142,135,155,255);
+}
+.btns .gettingStarted:hover{
     opacity: 80%;
     background-color:#2c1546;
     border: 2px #562289 solid;
 }
-.btns .s-up{
+.btns .view-leaderboard{
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(90deg,rgba(150,57,236,255),rgba(179,99,253,255));
 }
-.btns .s-up:hover{
+.btns .view-leaderboard:hover{
 box-shadow: white 0px 0px 10px;
 }
 .btns p{
