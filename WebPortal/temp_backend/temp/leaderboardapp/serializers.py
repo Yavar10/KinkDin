@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Player
+from .models import Player, Leaderboard
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -15,11 +15,18 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data.get("email"),
             password=validated_data["password"],
         )
-        Player.objects.create(username=user.username)  # auto add to leaderboard
+        Player.objects.create(username=user.username)  
         return user
 
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = "__all__"
+        fields = ["id", "name", "leetcode_username", "github_username", "score"]
+
+class LeaderboardSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source="user.name")  
+
+    class Meta:
+        model = Leaderboard
+        fields = ["id", "user", "platform", "score", "rank", "last_updated"]
