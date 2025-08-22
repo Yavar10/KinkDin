@@ -142,6 +142,10 @@ REST_FRAMEWORK={
         'rest_framework.authentication.TokenAuthentication'
     ],
 }
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "leaderboardapp.serializers.CustomRegisterSerializer",
+}
+
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SITE_ID = 1
