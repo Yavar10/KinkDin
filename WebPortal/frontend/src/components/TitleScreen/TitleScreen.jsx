@@ -1,7 +1,7 @@
 import React from 'react'
 import './TitleScreen.css'
-import trophy from "../../assets/trophy-svgrepo-com.svg"
-import codeslash from "../../assets/code-alt-svgrepo-com.svg"
+import trophy from "../../assets/tro.svg"
+import codeslash from "../../assets/cod.svg"
 const TitleScreen = () => {
   return (
     <div className='title-box'>
