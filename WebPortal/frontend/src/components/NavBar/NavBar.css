@@ -11,9 +11,6 @@ color: aliceblue;
 justify-content: center;
 align-items: center;
 }
-.nav .title {
-    padding-left: 50px;
-}
 .nav .title p{
    padding-left: 20px;
     font-size: 35px;
@@ -25,16 +22,16 @@ align-items: center;
   background-clip: text;
   color: transparent;
 text-shadow: rgba(165,85,218,255) 0px 0px 10px;
- animation: float 2s ease-in-out infinite;
+// animation: float 2s ease-in-out infinite;
 }
-
+/* 
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-5px);
-  }
+  } */
 
 }
 .nav .btns{
