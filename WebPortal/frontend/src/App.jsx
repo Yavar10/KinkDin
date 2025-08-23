@@ -16,7 +16,7 @@ function App() {
     <TitleScreen/>
     <About/>
     <Bar pos={gold} name="user_name" user="@user_id" icon={lig} sco="12345" place="1" />
-    <SignUp>
+    <SignUp/>
    </div>
   )
 }
