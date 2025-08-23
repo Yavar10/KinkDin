@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -41,6 +42,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -49,35 +51,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
-// Jetpack Compose
-    implementation(libs.ui)
-    implementation(libs.material3)
-    implementation(libs.androidx.activity.compose.v180)
-// Navigation
-    implementation(libs.androidx.navigation.compose)
-
-// ViewModel
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-
-// Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
-    ksp(libs.hilt.compiler)
-
-// Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
-
-// Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-
-// Coroutines
-    implementation(libs.kotlinx.coroutines.android)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -85,4 +58,32 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // ViewModel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
+
+// Hilt
+    implementation ("com.google.dagger:hilt-android:2.57")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    ksp("com.google.dagger:hilt-compiler:2.57")
+
+// Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+//     OkHttp & Logging
+    implementation ("com.squareup.okhttp3:okhttp:4.12.0")                       // Downgrade from 5.x
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")         // Matches okhttp 4.12.0
+
+// Kotlin Stdlib alignment (force the 2.0.21 stdlib)
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.0.21")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.21")
+
+// Room
+    implementation ("androidx.room:room-runtime:2.7.2")
+    implementation ("androidx.room:room-ktx:2.7.2")
+    ksp("androidx.room:room-compiler:2.7.2")
+
+// Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 }
