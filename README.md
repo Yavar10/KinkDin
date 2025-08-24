@@ -115,7 +115,7 @@ buildTypes {
 - **Mradul Gupta** - appy lover
 - **Sumit Rajput** - tsxx Obsessed
 - **Gagan Deep Yadav** - Main Developer
-- **Rupesh Chaurasia** - hidden Member
+- **Rupesh Chaurasia** - npm
 
 
 **Note:** Still Cooking 
