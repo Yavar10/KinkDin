@@ -13,19 +13,26 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: sticky;
+    top: 0px;
+  backdrop-filter: blur(10px);        
+  -webkit-backdrop-filter: blur(10px); 
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 999;
+
 }
 .nav div{
 margin: 10px;
 display: flex;
-color: aliceblue;
 justify-content: center;
 align-items: center;
 }
-.nav .title p{
-   padding-left: 20px;
+.nav .title{
     font-size: 35px;
     color: aliceblue;
     font-weight: 300;
+    height: 50px;
      background: linear-gradient(190deg, #8132d1, #4c2c86);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -41,6 +48,7 @@ text-shadow: rgba(165,85,218,255) 0px 0px 10px;
     display: flex;
     justify-content: space-around;
     padding-right: 50px;
+    height: 60px;
 }
 
 .btns div{
