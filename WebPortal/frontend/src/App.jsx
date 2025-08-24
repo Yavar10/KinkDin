@@ -8,7 +8,6 @@ function App() {
   return (
    <div>
     <Home/>
-    <SignUp2/>
    </div>
   )
 }

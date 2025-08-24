@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <div className='nav'>
-        <div className="title"><p>KinkDin</p></div>
+        <div className="title">KinkDin</div>
         <div className="btns">
             <button onClick={()=>{themeHandler()}} className="themeicon"><img className='svg' src={path} alt="" /></button>
             <div className='s-in'><img className='svg' src={sin} alt="" /><p className='btext'>Sign In</p></div>
