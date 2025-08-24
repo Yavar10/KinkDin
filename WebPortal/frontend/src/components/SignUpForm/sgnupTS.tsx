@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -139,4 +139,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp */
