@@ -21,10 +21,10 @@ body::before {
   height: 200%;
   background: linear-gradient(
     120deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 40%,
-    rgba(255, 255, 255, 0.05) 60%,
-    rgba(255, 255, 255, 0.02) 100%
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.10) 60%,
+    rgba(255, 255, 255, 0.04) 100%
   );
   background-size: 200% 200%;
   animation: shine 6s linear infinite;

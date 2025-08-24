@@ -1,13 +1,23 @@
 import './App.css'
 
-import SignUp2 from "./components/SignUp/SignUp2.jsx"
+import { Routes,Route } from 'react-router-dom'
+
 import Home from './pages/Home/Home.jsx'
+import SignUpPage from './pages/Sign/SignUpPage.jsx'
+import SignInPage from './pages/Sign/SignInPage.jsx'
+
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
   return (
    <div>
-    <Home/>
+     <Routes>
+        <Route path='/'element={<Home/>} />
+        <Route path='/SignUp'element={<SignUpPage/>} />
+        <Route path='/SignIn'element={<SignInPage/>} />
+      </Routes>
+      <ToastContainer position="top-center" autoClose={3000} />
    </div>
   )
 }
