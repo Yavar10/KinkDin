@@ -8,6 +8,7 @@ function Bar({
     icon,
     sco,
     place,
+    high,
 }){
     return (
         <div className="mainBar">
@@ -19,7 +20,7 @@ function Bar({
                 <div className="icon"><img src={icon} alt="icon" ></img></div>
                 <div className="sco">{sco}</div>
             </div>
-            <div className="podium">
+            <div className="podium" style={{height:high}}>
                 <div className="place">{place}</div>
             </div>
         </div>
