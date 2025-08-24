@@ -1,8 +1,18 @@
+.themeicon{
+  border-radius: 100%;
+  border: 3px solid rgb(255, 255, 255);
+  background-color: aliceblue;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    //background-color: black;
 }
 .nav div{
 margin: 10px;
@@ -22,16 +32,9 @@ align-items: center;
   background-clip: text;
   color: transparent;
 text-shadow: rgba(165,85,218,255) 0px 0px 10px;
-// animation: float 2s ease-in-out infinite;
+
 }
-/* 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  } */
+
 
 
 .nav .btns{
@@ -44,10 +47,8 @@ text-shadow: rgba(165,85,218,255) 0px 0px 10px;
     border-radius: 10px;
     height: 30px;
     gap: 10px;
- 
     display: flex;
     align-items: center;
-    gap: 8px;
     padding: 6px 12px;
     cursor: pointer;
      transition: all 0.2s ease-in-out;
@@ -58,10 +59,11 @@ transform: translateY(-3px);
 }
 .btns .s-in{
     display: flex;
-       border: 2px #221335 solid;
+    border: 2px #221335 solid;
     justify-content: center;
     align-items: center;
     background-color:rgba(9,9,11,255)
+
 }
 .btns .s-in:hover{
     opacity: 80%;

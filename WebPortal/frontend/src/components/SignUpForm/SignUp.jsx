@@ -1,7 +1,9 @@
-import React from 'react'
+/* import React from 'react'
 import { useForm } from 'react-hook-form';
 import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+
+
 
 const SignUp = () => {
 
@@ -19,14 +21,14 @@ const SignUp = () => {
     <div className='flex items-center justify-center border-2 h-screen'>
       <div className="bg-[#0c0b0e] p-8 rounded-2xl shadow-lg w-96">
         
-        {/* Header */}
+     
         <div className="text-2xl flex flex-col justify-center items-center font-semibold text-center mb-6 text-white">
           <FaUserCircle style={{ color: '#5D3FD3' }} className='size-11' />
           <h2 className="font-semibold text-xl p-3">Join KinkDin</h2>
           <h3 className="text-sm font-thin">Create your account and get started</h3>
         </div>
         
-        {/* Name & Username */}
+       
         <div className="flex justify-between gap-5 text-white">
           <div className="flex flex-col justify-between text-xs">
             Full Name
@@ -47,7 +49,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Email */}
+       
         <div className='text-white text-xs mt-4'>
           <p>Email</p>
           <input 
@@ -57,7 +59,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* LeetCode Username */}
+        
         <div className='text-white text-xs mt-4'>
           <p>LeetCode UserName</p>
           <input 
@@ -67,7 +69,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* Password */}
+   
         <div className='text-white text-xs mt-4'>
           <p>Password</p>
           <div className="relative flex">
@@ -80,7 +82,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Confirm Password */}
+        
         <div className='text-white text-xs mt-4'>
           <p>Confirm Password</p>
           <div className="relative flex">
@@ -93,7 +95,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Radio + Terms */}
+      
         <div className='flex mt-4 text-xs justify-between'>
           <input 
             type="radio"
@@ -107,14 +109,14 @@ const SignUp = () => {
           </p>
         </div>
 
-        {/* Button */}
+  
         <button
           className="bg-[#5D3FD3] text-white w-full py-2 rounded-lg font-medium hover:bg-[#4c32aa] cursor-pointer mt-6"
         >
           Create Account
         </button>
 
-        {/* Footer */}
+      
         <div className="flex text-white text-xs justify-center items-center mt-2">
           <p>Already have an account ? <span style={{ color: '#592A8A' }}>SignIn</span></p>
         </div>                
@@ -125,3 +127,4 @@ const SignUp = () => {
 }
 
 export default SignUp
+ */

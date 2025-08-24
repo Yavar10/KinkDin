@@ -1,0 +1,124 @@
+/* Container */
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+background: radial-gradient(circle, #6a0dad, #000000);
+  height: 100vh;
+}
+
+/* Card */
+.signup-card {
+  background: #0c0b0e;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  width: 24rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.signup-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.signup-header h2 {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+.signup-header h3 {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.signup-icon {
+  font-size: 2.8rem;
+  color: #5D3FD3;
+}
+
+/* Fields */
+.signup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+.signup-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  flex: 1;
+}
+.signup-field.full {
+  margin-top: 1rem;
+}
+.signup-field label {
+  margin-bottom: 0.25rem;
+}
+.signup-field input {
+  background: #110f12;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  color: white;
+}
+.signup-field input:focus {
+  box-shadow: 0 0 0 2px #592A8A;
+}
+.signup-field input::placeholder {
+  font-size: 0.7rem;
+  color: #777;
+}
+
+/* Password input with icon */
+.input-with-icon {
+  position: relative;
+}
+.eye-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Terms */
+.terms {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.65rem;
+}
+.terms input {
+  margin-right: 0.5rem;
+}
+.highlight {
+  color: #592A8A;
+}
+
+/* Button */
+.signup-btn {
+  background: #5D3FD3;
+  color: white;
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.signup-btn:hover {
+  background: #4c32aa;
+}
+
+/* Footer */
+.signup-footer {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-size: 0.75rem;
+}
