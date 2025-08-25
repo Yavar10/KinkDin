@@ -13,8 +13,8 @@ const NavBar = () => {
 
   const { colo, setColo } =useContext(themeContext);
 
-  const[theme,setTheme]=useState("themeicond")
-  const[path,setPath]=useState(moon)
+  const[theme,setTheme]=useState("dark")
+  const[path,setPath]=useState(sun)
     const navigate=useNavigate();
 
   const sign=(x)=>{
