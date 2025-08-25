@@ -13,8 +13,8 @@ const NavBar = () => {
 
   const { colo, setColo } =useContext(themeContext);
 
-  const[theme,setTheme]=useState("themeicond")
-  const[path,setPath]=useState(moon)
+  const[theme,setTheme]=useState("dark")
+  const[path,setPath]=useState(sun)
     const navigate=useNavigate();
 
   const sign=(x)=>{
@@ -45,7 +45,16 @@ const NavBar = () => {
     <div className='nav'>
         <div onClick={()=>{sign("home")}} className="title">KinkDin</div>
         <div className="btns">
-            <button onClick={()=>{themeHandler()}} className="themeicon"><img className='svg' src={path} alt="" /></button>
+            <button 
+  onClick={() => { themeHandler() }} 
+  className="themeicon"
+>
+  <img 
+    className={`svg ${theme === "light" ? "rotate" : ""}`} 
+    src={path} 
+    alt="theme icon" 
+  />
+</button>
             <div onClick={()=>{sign("in")}} className='s-in'><img className='svg' src={sin} alt=""  /><p className='btext'>Sign In</p></div>
             <div onClick={()=>{sign("up")}} className='s-up'><img className='svg' src={sup} alt="" /><p className='btext'>Sign Up</p></div>
             </div>

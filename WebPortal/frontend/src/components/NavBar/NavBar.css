@@ -100,3 +100,13 @@ box-shadow: white 0px 0px 10px;
   font-size: 14px;
   padding: 0;
 }
+.svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.rotate {
+  transform: rotate(360deg);
+  opacity: 0.7;
+}
