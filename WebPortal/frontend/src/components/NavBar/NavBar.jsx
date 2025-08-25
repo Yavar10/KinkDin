@@ -5,7 +5,13 @@ import sup from "../../assets/s-up.svg"
 import sun from '../../assets/sun.svg'
 import moon from '../../assets/moon.svg'
 import { useNavigate } from 'react-router-dom'
+
+import { themeContext } from '../Context/context'
+import { useContext } from 'react'
+
 const NavBar = () => {
+
+  const { colo, setColo } =useContext(themeContext);
 
   const[theme,setTheme]=useState("themeicond")
   const[path,setPath]=useState(moon)
@@ -21,14 +27,17 @@ const NavBar = () => {
   }
 
   const themeHandler=()=>{
+    console.log(colo)
     if(theme==="dark")
     {
       setTheme("light")
+      setColo("#c6a0ffff")
       setPath(moon)
     }
     
     else
-    {setTheme("dark")
+      {setTheme("dark")
+        setColo("#0f051e")
     setPath(sun)}
   }
 
