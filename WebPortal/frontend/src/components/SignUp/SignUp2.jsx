@@ -2,9 +2,11 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 import './SignUp2.css';   // <-- external CSS file
 
 const SignUp2 = () => {
+  const navigate =useNavigate();
   const {
     register,
     handleSubmit,
@@ -54,7 +56,7 @@ const SignUp2 = () => {
         <div className="signup-field full">
           <label>Password</label>
           <div className="input-with-icon">
-            <input type="password" placeholder="Create a strong password..." />
+            <input style={{width:"97%"}} type="password" placeholder="Create a strong password..." />
             <MdOutlineRemoveRedEye className="eye-icon" />
           </div>
         </div>
@@ -63,7 +65,7 @@ const SignUp2 = () => {
         <div className="signup-field full">
           <label>Confirm Password</label>
           <div className="input-with-icon">
-            <input type="password" placeholder="Confirm your password..." />
+            <input style={{width:"97%"}} type="password" placeholder="Confirm your password..." />
             <MdOutlineRemoveRedEye className="eye-icon" />
           </div>
         </div>
@@ -83,7 +85,7 @@ const SignUp2 = () => {
 
         {/* Footer */}
         <div className="signup-footer">
-          <p>Already have an account? <span className="highlight">SignIn</span></p>
+          <p>Already have an account? <span onClick={()=>{navigate("/SignIn")}} className="highlight">SignIn</span></p>
         </div>                
 
       </div>
