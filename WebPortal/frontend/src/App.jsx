@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify'
 import { useState } from 'react'
 import { useContext } from 'react'
 import { themeContext } from './components/Context/context.js'
+import Leaderboard from './pages/Leaderboard/Leaderboard.jsx'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/'element={<Home/>} />
         <Route path='/SignUp'element={<SignUpPage/>} />
         <Route path='/SignIn'element={<SignInPage/>} />
+        <Route path='/Leaderboard'element={<Leaderboard/>} />
       </Routes>
       </themeContext.Provider>
       <ToastContainer position="top-center" autoClose={3000} />

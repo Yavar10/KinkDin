@@ -5,19 +5,19 @@ body{
 .mainBar{
     height: 500px;
     width: 150px;
-    border: 1px solid black;
+    
     display: flex;
     justify-content: end;
     align-items: center;
     flex-direction: column;
     padding: 0px;
-    background-color: black;
+   
 }
 .pic{
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    border: 1px solid black;
+    
     background-color: white;
     margin: 5px;
 
@@ -47,7 +47,7 @@ body{
 .user{
     height:15px;
     width:80px;
-    border: 1px solid black;
+    
     margin: 2px;
     color: rgb(173, 173, 173);
     display: flex;
@@ -59,7 +59,7 @@ body{
 .pts{
     height:15px;
     width:80px;
-    border: 1px solid black;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@ body{
     height:12px;
     width:12px;
     background-color: black;
-    border: 1px solid black;
+    
     display: flex;
     justify-content: center;
     align-items: center;
