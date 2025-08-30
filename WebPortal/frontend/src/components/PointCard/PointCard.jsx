@@ -3,6 +3,7 @@ import lig from '../../assets/lig.svg'
 
 function PointCard(){
     return (
+        <div className='pcCont'>
         <div className="mainDiv">
             <div className="heading">
                 <div className="lig"><img src={lig} alt="trophy"></img></div>
@@ -23,6 +24,7 @@ function PointCard(){
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 

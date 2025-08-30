@@ -43,7 +43,7 @@ const NavBar = () => {
 
   return (
     <div className='nav'>
-        <div onClick={()=>{sign("home")}} className="title">KinkDin</div>
+        <div onClick={()=>{sign("home")}} className="title">LockdIn</div>
         <div className="btns">
             <button 
   onClick={() => { themeHandler() }} 

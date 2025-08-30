@@ -5,7 +5,7 @@ import tro from '../../assets/tro.svg'
 function About() {
 
   return (
-   <div className = "mainDiv">
+   <div className = "mainDivAbout">
     <div className = "box">
       <div className = "pic" style={{ backgroundColor: '#a752f7' }}><img src={tro} alt="trophy"></img></div>
       <div className = "title">Live Rankings</div>
