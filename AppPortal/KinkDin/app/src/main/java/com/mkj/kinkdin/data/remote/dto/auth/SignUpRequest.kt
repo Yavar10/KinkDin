@@ -1,4 +1,9 @@
 package com.mkj.kinkdin.data.remote.dto.auth
 
-class SignUpRequest {
-}
+data class SignUpRequest(
+    val username: String,
+    val email: String,
+    val password: String,
+    val leetcodeUsername: String,
+    val fullName: String? = null
+)
