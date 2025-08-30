@@ -3,7 +3,7 @@
 .title-box{
     display: flex;
     flex-direction: column;
-    
+    margin-top: 50px;
     align-items: center;
     height: 340px;
 }
@@ -39,7 +39,7 @@ text-shadow: rgba(165,85,218,255) 0px 0px 10px;
   }
 
 }
-.title-box .btns{
+.title-box .Tbtns{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,23 +49,21 @@ text-shadow: rgba(165,85,218,255) 0px 0px 10px;
   margin-top: 100px;
 }
 
-.btns div{
+.Tbtns div{
     border-radius: 10px;
     height: 30px;
     gap: 10px;
- 
     display: flex;
     align-items: center;
-    gap: 8px;
     padding: 6px 12px;
     cursor: pointer;
      transition: all 0.2s ease-in-out;
 }
-.btns div:hover{
+.Tbtns div:hover{
 //box-shadow: white 0px 0px 10px;
 transform: translateY(-3px);
 }
-.btns .gettingStarted{
+.Tbtns .gettingStarted{
     display: flex;
        border: 2px #221335 solid;
     justify-content: center;
@@ -79,21 +77,21 @@ word-wrap: normal;
   text-align: center; 
   color: rgba(142,135,155,255);
 }
-.btns .gettingStarted:hover{
+.Tbtns .gettingStarted:hover{
     opacity: 80%;
     background-color:#2c1546;
     border: 2px #562289 solid;
 }
-.btns .view-leaderboard{
+.Tbtns .view-leaderboard{
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(90deg,rgba(150,57,236,255),rgba(179,99,253,255));
 }
-.btns .view-leaderboard:hover{
+.Tbtns .view-leaderboard:hover{
 box-shadow: white 0px 0px 10px;
 }
-.btns p{
+.Tbtns p{
     color: white;
 }
 .svg{

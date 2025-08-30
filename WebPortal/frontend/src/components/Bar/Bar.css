@@ -1,0 +1,115 @@
+body{
+    font-family: 'poppins';
+}
+
+.mainBar{
+    height: 500px;
+    width: 150px;
+    
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px;
+   
+}
+.pic{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    
+    background-color: white;
+    margin: 5px;
+
+}
+
+.pos{
+    height:25px;
+    width:25px;
+    border-radius: 50%;
+    margin: 2px;
+}
+.pos img{
+    height: 25px;
+    width: 25px;
+}
+.name{
+    height:15px;
+    width:80px;
+    border:1px solid black;
+    margin-top: 5px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+}
+.user{
+    height:15px;
+    width:80px;
+    
+    margin: 2px;
+    color: rgb(173, 173, 173);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+
+}
+.pts{
+    height:15px;
+    width:80px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#763bb4;
+    font-size: small;
+    margin-top: 3px;
+    font-weight: 900;
+}
+.icon{
+    height:12px;
+    width:12px;
+    background-color: black;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon img{
+     height:12px;
+    width:12px;
+}
+.sco{
+    height:15px;
+    width:35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.podium{
+    height:150px;
+    width:100px;
+    border: 0.1px solid #763bb4;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: 15px;    
+    background-color: black;
+    background-image:  /* url('../../assets/grid.png'), */  linear-gradient(180deg, black 40%, #451776 100%);
+    background-repeat: repeat;
+    background-size: contain;
+}
+.place{
+    height:10px;
+    width:10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}

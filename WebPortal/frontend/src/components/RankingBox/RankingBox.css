@@ -1,0 +1,52 @@
+.locks{
+    border-radius: 40px;
+    height: 50px;
+    width: 100px;
+    border: 1px solid #8132d1;
+    background-color:  #38155b;
+    color: #8132d1;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    font-size: 16px;
+}
+.ques-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.pd{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.RankBox p{
+    color: aliceblue;
+}
+.RankBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px rgb(255, 255, 255) solid;
+    border-radius: 10px;
+    height: 90px;
+    padding: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.RankBox:hover {
+    transform: scale3d(1.05, 1.05, 1); 
+box-shadow: #8132d1 0px 0px 20px;
+}
+.img-rank{
+    height: 70px;
+    border-radius: 100%;
+      border: 2px gold solid;
+    width: 70px;
+}

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            background: #f8f9fa;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 5px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .tab.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .leaderboard-table th {
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .leaderboard-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .rank {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .rank-1 { color: #f1c40f; }
+        .rank-2 { color: #95a5a6; }
+        .rank-3 { color: #cd7f32; }
+        
+        .score {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 16px;
+        }
+        
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+        
+        .auth-status {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 Coding Leaderboard</h1>
+            <p>Compete on GitHub & LeetCode</p>
+        </div>
+        
+        <div class="content">
+            <div id="authStatus" class="auth-status">
+                <span id="authMessage">Not authenticated</span>
+                <button id="logoutBtn" class="btn btn-danger" style="float: right; display: none;">Logout</button>
+            </div>
+            
+            <div id="messageArea"></div>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('login')">Login</button>
+                <button class="tab" onclick="switchTab('register')">Register</button>
+                <button class="tab" onclick="switchTab('leaderboard')">Leaderboard</button>
+                <button class="tab" onclick="switchTab('profile')">My Profile</button>
+            </div>
+            
+            <!-- Login Tab -->
+            <div id="login" class="tab-content active">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username:</label>
+                        <input type="text" id="loginUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+            </div>
+            
+            <!-- Register Tab -->
+            <div id="register" class="tab-content">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regUsername">Username:</label>
+                        <input type="text" id="regUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email:</label>
+                        <input type="email" id="regEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword1">Password:</label>
+                        <input type="password" id="regPassword1" name="password1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword2">Confirm Password:</label>
+                        <input type="password" id="regPassword2" name="password2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="githubUsername">GitHub Username (optional):</label>
+                        <input type="text" id="githubUsername" name="github_username">
+                    </div>
+                    <div class="form-group">
+                        <label for="leetcodeUsername">LeetCode Username (optional):</label>
+                        <input type="text" id="leetcodeUsername" name="leetcode_username">
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                </form>
+            </div>
+            
+            <!-- Leaderboard Tab -->
+            <div id="leaderboard" class="tab-content">
+                <h2>Leaderboard</h2>
+                <button id="refreshLeaderboard" class="btn btn-secondary">🔄 Refresh</button>
+                <div id="leaderboardContent">
+                    <div class="loading">Click refresh to load leaderboard...</div>
+                </div>
+            </div>
+            
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <h2>My Profile</h2>
+                <div id="profileContent">
+                    <div class="loading">Please login to view your profile</div>
+                </div>
+                <button id="updateScores" class="btn" style="display: none;">🔄 Update My Scores</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_BASE = 'http://127.0.0.1:8000'; // Adjust this to your Django server
+        let authToken = localStorage.getItem('authToken');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthStatus();
+            setupEventListeners();
+        });
+        
+        function setupEventListeners() {
+            // Form submissions
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            document.getElementById('refreshLeaderboard').addEventListener('click', loadLeaderboard);
+            document.getElementById('updateScores').addEventListener('click', updateMyScores);
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+        }
+        
+        function updateAuthStatus() {
+            const authMessage = document.getElementById('authMessage');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const updateScoresBtn = document.getElementById('updateScores');
+            
+            if (authToken) {
+                authMessage.textContent = 'Authenticated ✓';
+                logoutBtn.style.display = 'inline-block';
+                updateScoresBtn.style.display = 'inline-block';
+                loadProfile();
+            } else {
+                authMessage.textContent = 'Not authenticated';
+                logoutBtn.style.display = 'none';
+                updateScoresBtn.style.display = 'none';
+            }
+        }
+        
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        async function makeRequest(endpoint, options = {}) {
+            const url = `${API_BASE}${endpoint}`;
+            const defaultHeaders = {
+                'Content-Type': 'application/json',
+            };
+            
+            if (authToken) {
+                defaultHeaders['Authorization'] = `Token ${authToken}`;
+            }
+            
+            const config = {
+                ...options,
+                headers: { ...defaultHeaders, ...options.headers }
+            };
+            
+            try {
+                const response = await fetch(url, config);
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.detail || data.error || 'Request failed');
+                }
+                
+                return data;
+            } catch (error) {
+                throw new Error(error.message || 'Network error');
+            }
+        }
+        
+        function showMessage(message, type = 'success') {
+            const messageArea = document.getElementById('messageArea');
+            messageArea.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                messageArea.innerHTML = '';
+            }, 5000);
+        }
+        
+        async function handleLogin(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                username: formData.get('username'),
+                password: formData.get('password')
+            };
+            
+            try {
+                const response = await makeRequest('/dj-rest-auth/login/', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                });
+                
+                authToken = response.key;
+                localStorage.setItem('authToken', authToken);
+                updateAuthStatus();
+                showMessage('Login successful!');
+                switchTab('profile');
+                
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        }
+        
+        async function handleRegister(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                username: formData.get('username'),
+                email: formData.get('email'),
+                password1: formData.get('password1'),
+                password2: formData.get('password2'),
+                github_username: formData.get('github_username'),
+                leetcode_username: formData.get('leetcode_username')
+            };
+            
+            try {
+                const response = await makeRequest('/dj-rest-auth/registration/', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                });
+                
+                authToken = response.key;
+                localStorage.setItem('authToken', authToken);
+                updateAuthStatus();
+                showMessage('Registration successful!');
+                switchTab('profile');
+                
+            } catch (error) {
+                let errorMsg = 'Registration failed';
+                if (typeof error.message === 'object') {
+                    errorMsg = Object.values(error.message).flat().join(', ');
+                } else {
+                    errorMsg = error.message;
+                }
+                showMessage(errorMsg, 'error');
+            }
+        }
+        
+        async function loadLeaderboard() {
+            const content = document.getElementById('leaderboardContent');
+            content.innerHTML = '<div class="loading">Loading leaderboard...</div>';
+            
+            try {
+                const data = await makeRequest('/leaderboard/leaderboard/');
+                
+                if (data.results && data.results.length > 0) {
+                    let tableHTML = `
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Username</th>
+                                    <th>GitHub</th>
+                                    <th>LeetCode</th>
+                                    <th>GitHub Score</th>
+                                    <th>LeetCode Score</th>
+                                    <th>Total Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    data.results.forEach(player => {
+                        const rankClass = player.rank <= 3 ? `rank-${player.rank}` : '';
+                        tableHTML += `
+                            <tr>
+                                <td class="rank ${rankClass}">#${player.rank}</td>
+                                <td><strong>${player.username}</strong></td>
+                                <td>${player.github_username || '-'}</td>
+                                <td>${player.leetcode_username || '-'}</td>
+                                <td>${player.github_score}</td>
+                                <td>${player.leetcode_score}</td>
+                                <td class="score">${player.total_score}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    tableHTML += '</tbody></table>';
+                    content.innerHTML = tableHTML;
+                } else {
+                    content.innerHTML = '<div class="loading">No players found</div>';
+                }
+                
+            } catch (error) {
+                content.innerHTML = `<div class="message error">Failed to load leaderboard: ${error.message}</div>`;
+            }
+        }
+        
+        async function loadProfile() {
+            if (!authToken) return;
+            
+            const content = document.getElementById('profileContent');
+            
+            try {
+                const data = await makeRequest('/leaderboard/my-profile/');
+                
+                content.innerHTML = `
+                    <div class="user-info">
+                        <h3>👋 Welcome, ${data.username}!</h3>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>GitHub Username:</strong> ${data.github_username || 'Not set'}</p>
+                        <p><strong>LeetCode Username:</strong> ${data.leetcode_username || 'Not set'}</p>
+                        <p><strong>GitHub Score:</strong> ${data.github_score}</p>
+                        <p><strong>LeetCode Score:</strong> ${data.leetcode_score}</p>
+                        <p><strong>Total Score:</strong> <span class="score">${data.total_score}</span></p>
+                        <p><strong>Rank:</strong> #${data.rank}</p>
+                        <p><strong>Member since:</strong> ${new Date(data.created_at).toLocaleDateString()}</p>
+                    </div>
+                `;
+                
+            } catch (error) {
+                content.innerHTML = `<div class="message error">Failed to load profile: ${error.message}</div>`;
+            }
+        }
+        
+        async function updateMyScores() {
+            if (!authToken) return;
+            
+            try {
+                showMessage('Updating scores...', 'success');
+                const data = await makeRequest('/leaderboard/update-scores/', {
+                    method: 'POST'
+                });
+                
+                showMessage('Scores updated successfully!');
+                loadProfile(); // Refresh profile data
+                
+            } catch (error) {
+                showMessage(`Failed to update scores: ${error.message}`, 'error');
+            }
+        }
+        
+        function logout() {
+            authToken = null;
+            localStorage.removeItem('authToken');
+            updateAuthStatus();
+            document.getElementById('profileContent').innerHTML = '<div class="loading">Please login to view your profile</div>';
+            showMessage('Logged out successfully');
+            switchTab('login');
+        }
+    </script>
+</body>
+</html>

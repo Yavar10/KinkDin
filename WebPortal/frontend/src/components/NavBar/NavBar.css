@@ -1,70 +1,77 @@
+.themeicon{
+  border-radius: 100%;
+  border: 3px solid rgb(255, 255, 255);
+  background-color: aliceblue;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    //background-color: black;
+    position: sticky;
+    top: 0px;
+  backdrop-filter: blur(10px);        
+  -webkit-backdrop-filter: blur(10px); 
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 999;
+
 }
 .nav div{
 margin: 10px;
 display: flex;
-color: aliceblue;
 justify-content: center;
 align-items: center;
 }
-.nav .title {
-    padding-left: 50px;
-}
-.nav .title p{
-   padding-left: 20px;
+.nav .title{
     font-size: 35px;
     color: aliceblue;
     font-weight: 300;
+    height: 50px;
      background: linear-gradient(190deg, #8132d1, #4c2c86);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 text-shadow: rgba(165,85,218,255) 0px 0px 10px;
- animation: float 2s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
 
 }
+
+
+
 .nav .btns{
     display: flex;
     justify-content: space-around;
     padding-right: 50px;
+    height: 60px;
 }
 
 .btns div{
     border-radius: 10px;
     height: 30px;
     gap: 10px;
- 
     display: flex;
     align-items: center;
-    gap: 8px;
     padding: 6px 12px;
     cursor: pointer;
      transition: all 0.2s ease-in-out;
 }
 .btns div:hover{
-//box-shadow: white 0px 0px 10px;
+box-shadow: white 0px 0px 10px;
 transform: translateY(-3px);
 }
 .btns .s-in{
     display: flex;
-       border: 2px #221335 solid;
+    border: 2px #221335 solid;
     justify-content: center;
     align-items: center;
     background-color:rgba(9,9,11,255)
+
 }
 .btns .s-in:hover{
     opacity: 80%;
@@ -92,4 +99,14 @@ box-shadow: white 0px 0px 10px;
   white-space: nowrap;
   font-size: 14px;
   padding: 0;
+}
+.svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.rotate {
+  transform: rotate(360deg);
+  opacity: 0.7;
 }
