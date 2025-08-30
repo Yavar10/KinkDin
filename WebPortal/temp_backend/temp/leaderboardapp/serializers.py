@@ -2,16 +2,26 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Player, Leaderboard
 from dj_rest_auth.registration.serializers import RegisterSerializer
-
-
+from dj_rest_auth.registration.serializers import RegisterSerializer
+from rest_framework import serializers
+from .models import Player
 class CustomRegisterSerializer(RegisterSerializer):
-    leetcode_username = serializers.CharField(required=False, allow_blank=True, max_length=50)
+    leetcode_username = serializers.CharField(
+        required=False, allow_blank=True, max_length=50
+    )
 
-    def custom_signup(self, request, user):
+    def get_cleaned_data(self):
+        data = super().get_cleaned_data()
+        data['leetcode_username'] = self.validated_data.get('leetcode_username', '')
+        return data
+
+    def save(self, request):
+        user = super().save(request)
         Player.objects.create(
             user=user,
-            leetcode_username=self.validated_data.get("leetcode_username", "")
+            leetcode_username=self.cleaned_data.get('leetcode_username', '')
         )
+        return user
 
 
 class PlayerSerializer(serializers.ModelSerializer):

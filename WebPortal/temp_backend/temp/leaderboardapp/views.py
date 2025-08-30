@@ -11,6 +11,12 @@ from .utils import (
     fetch_skill_stats,
     update_player_scores
 )
+# leaderboardapp/views.py
+from dj_rest_auth.registration.views import RegisterView
+from .serializers import CustomRegisterSerializer
+
+class CustomRegisterView(RegisterView):
+    serializer_class = CustomRegisterSerializer
 
 
 @api_view(["POST"])
