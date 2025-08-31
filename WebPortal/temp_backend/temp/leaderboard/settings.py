@@ -67,7 +67,7 @@ ROOT_URLCONF = "leaderboard.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -128,6 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -146,22 +149,42 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
          'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/hour',
+        'user': '300/hour'
+    }
 }
-# Disable email verification completely
-ACCOUNT_EMAIL_VERIFICATION = 'none'  # Changed from 'optional' to 'none'
 
-# Other allauth settings
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 
-# Email backend for development (keeps existing setting)
+ACCOUNT_SIGNUP_FIELDS = {
+    'username': {
+        'required': True,
+    },
+    'email': {
+        'required': True,
+    },
+    'password1': {
+        'required': True,
+    },
+    'password2': {
+        'required': True,
+    },
+}
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 SITE_ID = 1
-
-REST_AUTH = {
-    'REGISTER_SERIALIZER': 'leaderboardapp.serializers.CustomRegisterSerializer',
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "leaderboardapp.serializers.CustomRegisterSerializer"
 }
+
 
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
@@ -170,11 +193,13 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Kolkata"
 
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
     "http://localhost:8000",
+    "http://localhost:8080",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True

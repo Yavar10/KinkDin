@@ -1,18 +1,33 @@
+from celery import shared_task
 from .models import Player
-from .utils import fetch_github_stats, fetch_leetcode_stats
+from .utils import update_player_scores
 
-def update_leaderboard():
-    players = Player.objects.all()
+
+@shared_task
+def update_all_player_scores():
+    players = Player.objects.filter(leetcode_username__isnull=False).exclude(leetcode_username='')
+    updated_count = 0
+    
     for player in players:
-        leet_stats = fetch_leetcode_stats(player.leetcode_username) if player.leetcode_username else {}
-        git_stats = fetch_github_stats(player.github_username) if player.github_username else {}
+        try:
+            update_player_scores(player)
+            updated_count += 1
+        except Exception as e:
+            print(f"Failed to update scores for {player.user.username}: {str(e)}")
+    
+    return f"Updated scores for {updated_count} players"
 
-        # scoring system
-        leet_score = leet_stats.get("total_solved", 0)
-        git_score = git_stats.get("repos", 0) + git_stats.get("followers", 0)
 
-        # update cached score
-        player.score = leet_score + git_score
-        player.save()
-
-    return "Leaderboard updated successfully"
+@shared_task
+def update_single_player_score(player_id):
+    try:
+        player = Player.objects.get(id=player_id)
+        if player.leetcode_username:
+            update_player_scores(player)
+            return f"Updated scores for {player.user.username}"
+        else:
+            return f"No LeetCode username for {player.user.username}"
+    except Player.DoesNotExist:
+        return f"Player with id {player_id} not found"
+    except Exception as e:
+        return f"Failed to update player {player_id}: {str(e)}"
