@@ -3,24 +3,37 @@ package com.mkj.kinkdin.presentation.screens.auth.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Code
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mkj.kinkdin.presentation.components.common.CustomTextField
+import com.mkj.kinkdin.R
 import com.mkj.kinkdin.presentation.components.common.CustomButton
+import com.mkj.kinkdin.presentation.components.common.CustomTextField
 import com.mkj.kinkdin.presentation.components.common.MovingGradientBackground
 
 @Composable
@@ -32,7 +45,7 @@ fun LoginScreen(
     onLoginClick: () -> Unit,
     onNavigateToSignUp: () -> Unit,
     onBackClick: () -> Unit,
-    onForgotPasswordClick: () -> Unit
+    onForgotPasswordClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -99,7 +112,7 @@ fun LoginScreen(
                     )
 
                     Text(
-                        text = "Sign in to access your KinkeDin dashboard",
+                        text = "Sign in to access your " + stringResource(R.string.app_name) + " dashboard",
                         fontSize = 14.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(top = 4.dp)

@@ -28,7 +28,7 @@ object DatabaseModule {
             KinkdinDatabase::class.java,
             Constants.DATABASE_NAME
         )
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(false)
             .build()
     }
 

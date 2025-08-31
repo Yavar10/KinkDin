@@ -39,9 +39,11 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mkj.kinkdin.R
 import kotlinx.coroutines.delay
 import kotlin.math.cos
 import kotlin.math.sin
@@ -74,7 +76,7 @@ fun SplashScreen1(
         ) {
             // App logo/name
             Text(
-                text = "KinkeDin",
+                text = stringResource(R.string.app_name),
                 fontSize = 48.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
@@ -190,7 +192,7 @@ fun SplashScreen(
 
             // App Name
             Text(
-                text = "KinkeDin",
+                text = stringResource(R.string.app_name),
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
@@ -275,7 +277,7 @@ fun SplashScreen(
                 fontSize = 10.sp
             )
             Text(
-                text = "© 2025 KinkeDin",
+                text = "© 2025 "+stringResource(R.string.app_name),
                 color = Color.Gray.copy(alpha = 0.4f),
                 fontSize = 8.sp,
                 modifier = Modifier.padding(top = 4.dp)
@@ -380,7 +382,7 @@ fun EnhancedSplashScreen(
 
             // App name with gradient
             Text(
-                text = "KinkeDin",
+                text = stringResource(R.string.app_name),
                 fontSize = 42.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White

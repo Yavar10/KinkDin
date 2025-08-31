@@ -14,7 +14,9 @@ import com.mkj.kinkdin.presentation.screens.auth.login.LoginScreen
 import com.mkj.kinkdin.presentation.screens.auth.login.LoginViewModel
 import com.mkj.kinkdin.presentation.screens.auth.signup.SignUpScreen
 import com.mkj.kinkdin.presentation.screens.auth.signup.SignUpViewModel
+import com.mkj.kinkdin.presentation.screens.auth.splash.EnhancedSplashScreen
 import com.mkj.kinkdin.presentation.screens.auth.splash.SplashScreen
+import com.mkj.kinkdin.presentation.screens.auth.splash.SplashScreen1
 import com.mkj.kinkdin.presentation.screens.auth.splash.SplashViewModel
 import com.mkj.kinkdin.presentation.screens.leaderboard.LeaderboardScreen
 import com.mkj.kinkdin.presentation.screens.leaderboard.LeaderboardViewModel
@@ -24,7 +26,6 @@ import com.mkj.kinkdin.presentation.screens.profile.EditProfileScreen
 import com.mkj.kinkdin.presentation.screens.profile.EditProfileViewModel
 import com.mkj.kinkdin.presentation.screens.settings.SettingsScreen
 import com.mkj.kinkdin.presentation.screens.settings.SettingsViewModel
-
 @Composable
 fun NavigationGraph(
     navController: NavHostController,
@@ -42,7 +43,7 @@ fun NavigationGraph(
             val viewModel: SplashViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsState()
 
-            SplashScreen(
+            EnhancedSplashScreen (
                 uiState = uiState,
                 onNavigateToLogin = {
                     navController.navigate(Screen.Login.route) {
