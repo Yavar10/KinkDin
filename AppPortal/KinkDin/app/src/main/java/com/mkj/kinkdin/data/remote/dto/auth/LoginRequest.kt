@@ -1,4 +1,6 @@
 package com.mkj.kinkdin.data.remote.dto.auth
 
-class LoginRequest {
-}
+data class LoginRequest(
+    val email: String,
+    val password: String,
+)

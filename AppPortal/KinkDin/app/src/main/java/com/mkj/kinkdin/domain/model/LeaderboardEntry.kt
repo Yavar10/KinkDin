@@ -1,4 +1,9 @@
 package com.mkj.kinkdin.domain.model
 
-class LeaderboardEntry {
-}
+data class LeaderboardEntry(
+    val rank: Int,
+    val user: User,
+    val points: Int,
+    val questionsolved: QuestionsSolved,
+    val weeklyProgress: Int
+)

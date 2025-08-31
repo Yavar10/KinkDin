@@ -1,4 +1,11 @@
 package com.mkj.kinkdin.data.remote.dto.auth
 
-class LoginResponse {
-}
+import com.mkj.kinkdin.data.remote.dto.auth.UserDto
+
+data class LoginResponse(
+    val success: Boolean,
+    val token: String,
+    val user: UserDto,
+    val expiresIn: Long,
+    val message: String? = null,
+)
