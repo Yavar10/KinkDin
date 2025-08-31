@@ -4,16 +4,7 @@ from django.core.validators import RegexValidator
 
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='player_profile')  # Fixed: Link to User model
-    github_username = models.CharField(
-        max_length=39,  # GitHub max username length
-        blank=True, 
-        null=True,
-        validators=[RegexValidator(
-            regex=r'^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$',
-            message='Invalid GitHub username format.'
-        )]
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='player_profile')
     leetcode_username = models.CharField(
         max_length=50, 
         blank=True, 
@@ -23,9 +14,15 @@ class Player(models.Model):
             message='LeetCode username can only contain letters, numbers, hyphens, and underscores.'
         )]
     )
-    total_score = models.IntegerField(default=0)  # Combined score
-    github_score = models.IntegerField(default=0)
+    total_score = models.IntegerField(default=0)
     leetcode_score = models.IntegerField(default=0)
+    total_solved = models.IntegerField(default=0)
+    easy_solved = models.IntegerField(default=0)
+    medium_solved = models.IntegerField(default=0)
+    hard_solved = models.IntegerField(default=0)
+    ranking = models.IntegerField(null=True, blank=True)
+    contribution_points = models.IntegerField(default=0)
+    reputation = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -37,20 +34,19 @@ class Player(models.Model):
         return f"{self.user.username} - Score: {self.total_score}"
 
     def calculate_total_score(self):
-        """Calculate total score from GitHub and LeetCode scores"""
-        self.total_score = self.github_score + self.leetcode_score
+        self.total_score = (self.easy_solved * 1) + (self.medium_solved * 3) + (self.hard_solved * 5)
         self.save(update_fields=['total_score'])
 
 
 class Leaderboard(models.Model):
-    player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='leaderboard_entries')  # Fixed: should be player
-    platform = models.CharField(max_length=50, choices=[("GitHub", "GitHub"), ("LeetCode", "LeetCode")])
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='leaderboard_entries')
+    platform = models.CharField(max_length=50, default="LeetCode")
     score = models.IntegerField(default=0)
     rank = models.IntegerField(null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ['player', 'platform']  # One entry per player per platform
+        unique_together = ['player', 'platform']
 
     def __str__(self):
         return f"{self.player.user.username} - {self.platform} - {self.score}"

@@ -2,5 +2,8 @@ from django.apps import AppConfig
 
 
 class LeaderboardappConfig(AppConfig):
-    default_auto_field = "django.db.models.BigAutoField"
-    name = "leaderboardapp"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'leaderboardapp'
+
+    def ready(self):
+        import leaderboardapp.signals
