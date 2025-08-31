@@ -7,4 +7,4 @@ from .models import Player
 @receiver(post_save, sender=User)
 def create_player_profile(sender, instance, created, **kwargs):
     if created and not hasattr(instance, 'player_profile'):
-        Player.objects.get_or_create(user=instance)
+        Player.objects.get_or_create(user=instance, defaults={'leetcode_username': ''})

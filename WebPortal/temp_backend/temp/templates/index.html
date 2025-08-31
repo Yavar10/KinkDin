@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -358,6 +357,8 @@
             const config = {
                 method,
                 headers,
+                mode: 'cors',
+                credentials: 'include',
             };
 
             if (data) {
@@ -365,15 +366,37 @@
             }
 
             try {
+                console.log('Making request to:', url);
+                console.log('Config:', config);
+                
                 const response = await fetch(url, config);
-                const result = await response.json();
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
+                
+                const contentType = response.headers.get('content-type');
+                let result;
+                
+                if (contentType && contentType.includes('application/json')) {
+                    result = await response.json();
+                } else {
+                    const text = await response.text();
+                    console.log('Non-JSON response:', text);
+                    throw new Error(`Server returned non-JSON response: ${text.substring(0, 100)}`);
+                }
+                
+                console.log('Response data:', result);
                 
                 if (!response.ok) {
-                    throw new Error(result.error || 'Request failed');
+                    throw new Error(result.error || result.detail || 'Request failed');
                 }
                 
                 return result;
             } catch (error) {
+                console.error('Request error:', error);
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    throw new Error('Cannot connect to server. Make sure Django is running on http://127.0.0.1:8000');
+                }
                 throw new Error(error.message);
             }
         }
