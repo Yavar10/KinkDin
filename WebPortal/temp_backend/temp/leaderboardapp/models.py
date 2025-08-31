@@ -17,9 +17,14 @@ class Player(models.Model):
     total_score = models.IntegerField(default=0)
     leetcode_score = models.IntegerField(default=0)
     total_solved = models.IntegerField(default=0)
+    total_submissions = models.IntegerField(default=0)  # Added this field
+    total_questions = models.IntegerField(default=0)    # Added this field
     easy_solved = models.IntegerField(default=0)
     medium_solved = models.IntegerField(default=0)
     hard_solved = models.IntegerField(default=0)
+    total_easy = models.IntegerField(default=0)         # Added this field
+    total_medium = models.IntegerField(default=0)       # Added this field
+    total_hard = models.IntegerField(default=0)         # Added this field
     ranking = models.IntegerField(null=True, blank=True)
     contribution_points = models.IntegerField(default=0)
     reputation = models.IntegerField(default=0)
@@ -47,6 +52,8 @@ class Leaderboard(models.Model):
 
     class Meta:
         unique_together = ['player', 'platform']
+        ordering = ['-score', 'rank']
 
     def __str__(self):
         return f"{self.player.user.username} - {self.platform} - {self.score}"
+

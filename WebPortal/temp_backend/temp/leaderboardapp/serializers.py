@@ -26,14 +26,16 @@ class PlayerSerializer(serializers.ModelSerializer):
         model = Player
         fields = [
             'id', 'username', 'email', 'leetcode_username', 
-            'total_score', 'leetcode_score', 'total_solved',
+            'total_score', 'leetcode_score', 'total_solved', 'total_submissions', 'total_questions',
             'easy_solved', 'medium_solved', 'hard_solved',
+            'total_easy', 'total_medium', 'total_hard',
             'ranking', 'contribution_points', 'reputation',
             'rank', 'created_at'
         ]
         read_only_fields = [
-            'total_score', 'leetcode_score', 'total_solved',
+            'total_score', 'leetcode_score', 'total_solved', 'total_submissions', 'total_questions',
             'easy_solved', 'medium_solved', 'hard_solved',
+            'total_easy', 'total_medium', 'total_hard',
             'ranking', 'contribution_points', 'reputation', 'rank'
         ]
 
