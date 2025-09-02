@@ -11,7 +11,6 @@ from .utils import (
     fetch_skill_stats,
     update_player_scores
 )
-# leaderboardapp/views.py
 from dj_rest_auth.registration.views import RegisterView
 from .serializers import CustomRegisterSerializer
 
@@ -26,6 +25,10 @@ def register(request):
     if serializer.is_valid():
         try:
             user = serializer.save(request)
+            # Update scores immediately after registration if leetcode_username is provided
+            if hasattr(user, 'player_profile') and user.player_profile.leetcode_username:
+                update_player_scores(user.player_profile)
+            
             return Response({
                 "message": "User & Player created successfully",
                 "user_id": user.id,
@@ -43,6 +46,18 @@ def register(request):
 @permission_classes([IsAuthenticated])
 def leaderboard(request):
     try:
+        # First update all player scores
+        players_with_leetcode = Player.objects.filter(
+            leetcode_username__isnull=False
+        ).exclude(leetcode_username='')
+        
+        for player in players_with_leetcode:
+            try:
+                update_player_scores(player)
+            except Exception as e:
+                print(f"Failed to update {player.user.username}: {e}")
+        
+        # Now get the updated leaderboard
         players = Player.objects.select_related('user').order_by("-total_score", "created_at")
         enriched_data = []
         
@@ -50,12 +65,17 @@ def leaderboard(request):
             player.rank = idx
             player.save(update_fields=['rank'])
             
-            leetcode_profile = fetch_leetcode_profile(player.leetcode_username) if player.leetcode_username else {}
+            # Fetch fresh leetcode profile data
+            leetcode_profile = {}
+            if player.leetcode_username:
+                leetcode_profile = fetch_leetcode_profile(player.leetcode_username)
+                if "error" in leetcode_profile:
+                    leetcode_profile = {"error": leetcode_profile["error"]}
             
             player_data = {
                 "rank": player.rank,
                 "username": player.user.username,
-                "leetcode_username": player.leetcode_username,
+                "leetcode_username": player.leetcode_username or "",
                 "total_score": player.total_score,
                 "total_solved": player.total_solved,
                 "easy_solved": player.easy_solved,
@@ -86,6 +106,13 @@ def leaderboard(request):
 def update_scores(request):
     try:
         player = Player.objects.get(user=request.user)
+        
+        if not player.leetcode_username:
+            return Response(
+                {"error": "No LeetCode username set. Please set your LeetCode username first."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
         updated_player = update_player_scores(player)
         
         serializer = PlayerSerializer(updated_player)
@@ -111,9 +138,16 @@ def update_scores(request):
 def my_profile(request):
     try:
         player = Player.objects.get(user=request.user)
+        
+        # Update scores before returning profile
+        if player.leetcode_username:
+            player = update_player_scores(player)
+        
         serializer = PlayerSerializer(player)
         
-        leetcode_profile = fetch_leetcode_profile(player.leetcode_username) if player.leetcode_username else {}
+        leetcode_profile = {}
+        if player.leetcode_username:
+            leetcode_profile = fetch_leetcode_profile(player.leetcode_username)
         
         response_data = serializer.data
         response_data['leetcode_profile'] = leetcode_profile
@@ -123,6 +157,11 @@ def my_profile(request):
         return Response(
             {"error": "Player profile not found"}, 
             status=status.HTTP_404_NOT_FOUND
+        )
+    except Exception as e:
+        return Response(
+            {"error": f"Failed to fetch profile: {str(e)}"}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
 
@@ -178,6 +217,7 @@ def update_leetcode_username(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         
+        # Validate username by fetching profile
         profile_data = fetch_leetcode_profile(new_username)
         if "error" in profile_data:
             return Response(
@@ -185,9 +225,11 @@ def update_leetcode_username(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         
+        # Update username
         player.leetcode_username = new_username
         player.save()
         
+        # Update scores with new username
         updated_player = update_player_scores(player)
         serializer = PlayerSerializer(updated_player)
         
