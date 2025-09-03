@@ -11,21 +11,27 @@ const Rankings = () => {
 
     try {
       const res = await axios.get(
-        `https://alfa-leetcode-api.onrender.com/${username}/solved`
+        `https://kinkdin.onrender.com/${username}/solved`
       );
 
+      const details= await axios.get(
+        `https://kinkdin.onrender.com/${username}`
+      );
+      
       console.log(res.data);
+      console.log(details.data);
 
       const newUser = {
         name: username,
         easy: res.data.easySolved,
         medium: res.data.mediumSolved,
         hard: res.data.hardSolved,
+        img:details.data.avatar
       };
 
       setUsers((prev) => [...prev, newUser]); // update only after fetching
       setUsername(""); // clear input
-
+      
     } catch (e) {
       console.log("Error:", e.message);
     }
@@ -50,7 +56,8 @@ const Rankings = () => {
           <RankingBox
             key={index}
             value={{
-              rank: index + 1, // temporary rank (just order)
+              img:user.img,
+              rank: index + 1,
               name: user.name,
               easy: user.easy,
               medium: user.medium,
