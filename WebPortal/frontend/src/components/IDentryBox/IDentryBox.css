@@ -1,0 +1,88 @@
+
+.lo{
+    position: absolute;
+    top:260px;
+    right: 550px;
+    height: 10px;
+    opacity: 0%;
+    transition: all 1s;
+    border-radius: 100%;
+    z-index: 0;
+}
+.leet:hover ~ .lo {
+    right: 400px;
+    height: 100px;
+    top: 330px;
+    opacity: 100%;
+    
+}
+.gt{
+    position: absolute;
+    top:407px;
+    right: 850px;
+    height: 100px;
+    opacity: 0%;
+    transition: all 1s;
+    border-radius: 100%;
+    z-index: 0;
+}
+.git:hover ~ .gt {
+    right: 980px;
+    top: 330px;
+    opacity: 100%;
+  
+}
+
+.iDentryBox{
+    box-sizing: border-box;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.entryCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  background-color: black;
+     backdrop-filter: blur 10px;
+      border: white 1px solid;
+
+  padding: 2rem;
+  border-radius: 1rem;
+  //box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  width: 24rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  transition: ease-in 0.5s;
+
+}
+.entryCont p{
+    color: aliceblue;
+    z-index: 1;
+}
+.entryBox{
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Entry{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 30px;
+    margin: 10px;
+    padding: 10px;
+}
+.Entry input{
+height: 28px;
+width: 100%;
+border-radius: 5px;
+}
