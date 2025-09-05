@@ -11,8 +11,8 @@ const Leaderboard = () => {
     <NavBar/>
     <LeaderBoardTitle/>
     <Pointcard/>
-    <Podium/>
     <Rankings/>
+    <Podium/>
     <RankingBox value={{rank:1,name:"Zuri",easy:139,medium:102,hard:5}}/>
     </div>
   )
