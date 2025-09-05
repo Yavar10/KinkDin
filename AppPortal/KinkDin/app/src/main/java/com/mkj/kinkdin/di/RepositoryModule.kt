@@ -36,9 +36,4 @@ abstract class RepositoryModule {
         leetcodeRepository: LeetcodeRepository
     ): ILeetcodeRepository
 
-//    @Binds
-//    @Singleton
-//    abstract fun bindLeaderboardRepository(
-//        leaderboardRepository: LeaderboardRepository
-//    ): ILeaderboardRepository
 }

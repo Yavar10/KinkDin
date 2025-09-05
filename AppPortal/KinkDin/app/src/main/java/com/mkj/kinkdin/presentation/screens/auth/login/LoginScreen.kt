@@ -22,6 +22,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -152,7 +153,7 @@ fun LoginScreen(
                     ) {
                         Text(
                             text = "Forgot password?",
-                            color = Color(0xFF6625D5),
+                            color = Color(0xFF736F79),
                             fontSize = 12.sp,
                             modifier = Modifier.clickable { onForgotPasswordClick() }
                         )
@@ -171,7 +172,7 @@ fun LoginScreen(
                     if (uiState.error != null) {
                         Text(
                             text = uiState.error,
-                            color = Color.Red,
+                            color = MaterialTheme.colorScheme.error,
                             fontSize = 12.sp,
                             modifier = Modifier.padding(top = 8.dp)
                         )
@@ -188,7 +189,7 @@ fun LoginScreen(
                         )
                         Text(
                             text = "Sign up",
-                            color = Color(0xFF6625D5),
+                            color = Color.White,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             modifier = Modifier.clickable { onNavigateToSignUp() }
