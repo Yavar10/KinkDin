@@ -17,7 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -72,7 +72,7 @@ fun SignUpScreen(
                 modifier = Modifier.padding(top = 16.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Default.ArrowBack,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Back",
                     tint = Color.White
                 )
@@ -135,7 +135,7 @@ fun SignUpScreen(
                         value = uiState.fullName,
                         onValueChange = onFullNameChange,
                         label = "Full Name",
-                        placeholder = "John Doe",
+                        placeholder = "Mradul Gupta",
                         error = uiState.fullNameError
                     )
 
@@ -146,7 +146,7 @@ fun SignUpScreen(
                         value = uiState.username,
                         onValueChange = onUsernameChange,
                         label = "Username",
-                        placeholder = "johndoe",
+                        placeholder = "Mradul001",
                         error = uiState.usernameError
                     )
 
