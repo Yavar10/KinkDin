@@ -9,12 +9,13 @@ const Leaderboard = () => {
   return (
     <div style={{height:"200vh",overflowY:"hidden"}}>
     <NavBar/>
-    <LeaderBoardTitle/>
-    <Pointcard/>
-    <Rankings/>
+   {/*  <LeaderBoardTitle/> */}
     <Podium/>
-    <RankingBox value={{rank:1,name:"Zuri",easy:139,medium:102,hard:5}}/>
-    </div>
+    <Pointcard/>
+    
+    <Rankings/>
+{/*    <RankingBox value={{rank:1,name:"Zuri",easy:139,medium:102,hard:5}}/>
+ */}    </div>
   )
 }
 

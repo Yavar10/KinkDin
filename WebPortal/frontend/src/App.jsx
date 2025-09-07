@@ -11,10 +11,11 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { themeContext } from './components/Context/context.js'
 import Leaderboard from './pages/Leaderboard/Leaderboard.jsx'
+import IDentry from './pages/IDentry/IDentry.jsx'
 
 function App() {
 
-  const [colo,setColo]=useState("#0f051e")
+  const [colo,setColo]=useState("#000000ff")
 
   return (
    <div style={{background:colo}}>
@@ -24,6 +25,7 @@ function App() {
         <Route path='/SignUp'element={<SignUpPage/>} />
         <Route path='/SignIn'element={<SignInPage/>} />
         <Route path='/Leaderboard'element={<Leaderboard/>} />
+        <Route path='/getStarted'element={<IDentry/>} />
       </Routes>
       </themeContext.Provider>
       <ToastContainer position="top-center" autoClose={3000} />
