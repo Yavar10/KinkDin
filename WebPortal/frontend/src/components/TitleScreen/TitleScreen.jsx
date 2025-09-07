@@ -10,6 +10,9 @@ const TitleScreen = () => {
   const leaderboardclick=()=>{
     navigate("/Leaderboard")
   }
+  const getStartedclick=()=>{
+    navigate("/getStarted")
+  }
   return (
     <div className='title-box'>
         <div className="title"><p>LockdIn</p></div>
@@ -18,7 +21,7 @@ const TitleScreen = () => {
             </p></div>
         <div className="Tbtns">
             <div onClick={()=>{leaderboardclick()}} className='view-leaderboard'><img className='svg' src={trophy} alt="" /><p className='btext'>View Leaderboard</p></div>
-            <div className='gettingStarted'><img className='svg' src={codeslash} alt="" /><p className='btext'>Get Started</p></div>
+            <div onClick={()=>{getStartedclick()}} className='gettingStarted'><img className='svg' src={codeslash} alt="" /><p className='btext'>Get Started</p></div>
             </div>
     </div>
   )

@@ -12,9 +12,10 @@ const Leaderboard = () => {
    {/*  <LeaderBoardTitle/> */}
     <Podium/>
     <Pointcard/>
+    
     <Rankings/>
-    <RankingBox value={{rank:1,name:"Zuri",easy:139,medium:102,hard:5}}/>
-    </div>
+{/*    <RankingBox value={{rank:1,name:"Zuri",easy:139,medium:102,hard:5}}/>
+ */}    </div>
   )
 }
 

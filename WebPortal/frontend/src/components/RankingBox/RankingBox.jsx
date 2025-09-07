@@ -5,8 +5,7 @@ import "./RankingBox.css"
 //import yavar from '../../assets/temp pfps/yavar.jpg'
 
 const RankingBox = ({value}) => {
-    const {rank,name,easy,medium,hard,img}=value;
-    const locks=easy*50+ medium*100 + hard*200;
+    const {rank,name,easy,medium,hard,img,locks}=value;
 
   return (
     <div>
