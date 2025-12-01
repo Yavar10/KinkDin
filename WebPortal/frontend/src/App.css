@@ -1,24 +1,27 @@
+/* Hide scrollbar but keep scroll behavior smooth */
 ::-webkit-scrollbar {
   display: none;
 }
 
+/* Base body styling */
 body {
   font-family: 'poppins';
   margin: 0;
+  padding: 0;
   min-height: 100vh;
   overflow-x: hidden;
-
-   position: relative;
-
+  background: #000; /* you can change if needed */
+  position: relative;
 }
 
+/* FIXED shine overlay — does NOT cause scroll issues */
 body::before {
   content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  position: fixed;          /* FIX: removes it from layout */
+  top: 0;
+  left: 0;
+  width: 100%;              /* FIX: no more 200% overflow */
+  height: 100%;
   background: linear-gradient(
     120deg,
     rgba(255, 255, 255, 0.10) 0%,
@@ -29,8 +32,10 @@ body::before {
   background-size: 200% 200%;
   animation: shine 6s linear infinite;
   pointer-events: none;
+  z-index: -1;              /* keeps it behind your content */
 }
 
+/* Shine animation stays the same */
 @keyframes shine {
   0% {
     transform: translateX(-25%) translateY(-25%);
@@ -38,4 +43,4 @@ body::before {
   100% {
     transform: translateX(25%) translateY(25%);
   }
-} 
+}
