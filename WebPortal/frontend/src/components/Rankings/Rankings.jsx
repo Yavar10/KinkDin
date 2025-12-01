@@ -1,14 +1,31 @@
-import { useState, useMemo } from "react"; 
+import { useState, useMemo, useEffect } from "react"; 
 import RankingBox from "../RankingBox/RankingBox";
 import axios from "axios";
+
 
 import arr from "../../assets/arrowW.svg"
 
 const Rankings = () => {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
+ 
+ const load = ()=> { 
+  for(let i=0;i<2;i++)
+  {
+    setUsername(arr[i])
+    console.log(arr[i])
+    handleAddUser();
+  }
+}
 
-  const handleAddUser = async () => {
+/* useEffect(() => {
+  return () => {
+    load()
+    console.log(username)
+  };
+}, []); */
+
+   const handleAddUser2 = async () => {
     if (username.trim() === "") {
       return;
     }
@@ -41,7 +58,47 @@ const Rankings = () => {
       console.log("Error:", e.message);
       alert("Failed to fetch user data. Please check the username.");
     }
-  };
+  }; 
+
+useEffect(() => {
+  const arr = ["zuri10", "priyank_gupta_","divyanshi_dhangar2005","Syed_Ali_Raza786","IdPoTqX4HA","Aditi_singh16","Kratikajaiswal_25"];
+
+  arr.forEach(name => handleAddUser(name));
+}, []);
+
+
+
+  const handleAddUser = async (uname = username) => {
+  if (uname.trim() === "") return;
+
+  if (users.some(user => user.name.toLowerCase() === uname.toLowerCase())) {
+    alert("User is already in the list!");
+    return;
+  }
+
+  try {
+    const res = await axios.get(
+      `https://kinkdin.onrender.com/${uname}/solved`
+    );
+    const details = await axios.get(
+      `https://kinkdin.onrender.com/${uname}`
+    );
+
+    const newUser = {
+      name: uname,
+      easy: res.data.easySolved,
+      medium: res.data.mediumSolved,
+      hard: res.data.hardSolved,
+      img: details.data.avatar,
+    };
+
+    setUsers(prev => [...prev, newUser]);
+  } catch (e) {
+    console.log("Error:", e.message);
+    alert("Failed to fetch user data. Please check the username.");
+  }
+};
+
 
   const sortedUsers = useMemo(() => {
     return [...users].sort((a, b) => {
@@ -60,9 +117,9 @@ const Rankings = () => {
           value={username}
           placeholder="Enter username"
           onChange={(e) => setUsername(e.target.value)}
-          onKeyPress={(event) => { if (event.key === 'Enter') handleAddUser(); }}
+          onKeyUp={(event) => { if (event.key === 'Enter') handleAddUser2(); }}
         />
-        <button  style={{display:"flex",alignItems:"center",justifyContent:"center",width:"50px" ,height:"36px",borderRadius:"5px",backdropFilter:"blur 10px",opacity:"80%",backgroundColor:"black",border:"purple solid 2px",boxShadow:"purple 0px 0px 10px"}} onClick={handleAddUser}> <img style={{height:"20px"}} src={arr} alt="" /></button>
+        <button  style={{display:"flex",alignItems:"center",justifyContent:"center",width:"50px" ,height:"36px",borderRadius:"5px",backdropFilter:"blur 10px",opacity:"80%",backgroundColor:"black",border:"purple solid 2px",boxShadow:"purple 0px 0px 10px"}} onClick={handleAddUser2}> <img style={{height:"20px"}} src={arr} alt="" /></button>
      
       </div>
 

@@ -18,7 +18,7 @@ function App() {
   const [colo,setColo]=useState("#000000ff")
 
   return (
-   <div style={{background:colo}}>
+   <div style={{overflowY:"hidden",background:colo}} >
     <themeContext.Provider value={{colo,setColo}}>
      <Routes>
         <Route path='/'element={<Home/>} />

@@ -7,15 +7,14 @@ import RankingBox from '../../components/RankingBox/RankingBox'
 import Rankings from '../../components/Rankings/Rankings'
 const Leaderboard = () => {
   return (
-    <div style={{height:"200vh",overflowY:"hidden"}}>
+    <div>
     <NavBar/>
-   {/*  <LeaderBoardTitle/> */}
-    <Podium/>
-    <Pointcard/>
+   
+   {/*  <Podium/> */}
     
     <Rankings/>
-{/*    <RankingBox value={{rank:1,name:"Zuri",easy:139,medium:102,hard:5}}/>
- */}    </div>
+    <Pointcard/>
+    </div>
   )
 }
 
