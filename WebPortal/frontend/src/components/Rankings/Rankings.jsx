@@ -61,7 +61,7 @@ const Rankings = () => {
   }; 
 
 useEffect(() => {
-  const arr = ["zuri10", "priyank_gupta_","divyanshi_dhangar2005","Syed_Ali_Raza786","IdPoTqX4HA","Aditi_singh16","Kratikajaiswal_25"];
+  const arr = ["zuri10","divyanshi_dhangar2005","Syed_Ali_Raza786","IdPoTqX4HA","Aditi_singh16","Kratikajaiswal_25"];
 
   arr.forEach(name => handleAddUser(name));
 }, []);
